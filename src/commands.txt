@@ -1,0 +1,22 @@
+Create NPM Package
+==========================================
+1) Login to your npm account
+2) Click on "add organization"
+3) Create a public organization (ex: ticketing-org)
+4) Create a 'common' folder in your project directory
+5) Create package.json file (npm init -y)
+6) Push your code to github
+7) npm login
+8) npm publish --access public
+9) tsc --init (to generate ts config file for converting typescript code to javascript before publishing)
+10) npm install typescript --save-dev
+11) In package.json file > unders scripts > add a build and clean command. Ex: "scripts": { "clean": "rimraf build", "build": "npm run clean && tsc" }
+12) In tsconfig.json file > uncomment 'declaration' & 'outDir' options
+13) Inside package.json > update "main" property > "main": "./build/index.js"
+14) Inside package.json > add "types" property > "types": "./build/index.d.ts"
+15) Inside package.json > add "files" property > "files": ["build/**/*"]
+16) Create a gitignore file
+17) Push files again to github
+18) npm version patch
+19) npm run build
+20) npm publish
