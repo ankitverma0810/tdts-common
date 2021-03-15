@@ -21,3 +21,5 @@ export * from './events/types/user-business';
 export * from './events/types/user-notification-status';
 export * from './events/types/user-role';
 export * from './events/types/user-status';
+export * from './events/user-created-event';
+export * from './events/user-updated-event';
