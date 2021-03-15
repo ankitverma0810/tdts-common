@@ -6,7 +6,7 @@ export interface UserCreatedEvent {
 	data: {
 		id: string;
 		firstName: string;
-		lastName: number;
+		lastName: string;
 		email: string;
 		version: number;
 	}
