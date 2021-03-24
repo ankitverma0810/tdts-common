@@ -24,3 +24,5 @@ export * from './events/types/user-status';
 export * from './events/user-created-event';
 export * from './events/user-updated-event';
 export * from './events/note-created-event';
+export * from './events/part-created-event';
+export * from './events/part-updated-event';

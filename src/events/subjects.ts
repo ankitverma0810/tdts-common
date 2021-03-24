@@ -3,5 +3,7 @@ export enum Subjects {
     TicketUpdated = 'ticket:updated',
     UserCreated = 'user:created',
     UserUpdated = 'user:updated',
-    NoteCreated = 'note:created'
+    NoteCreated = 'note:created',
+    PartCreated = 'part:created',
+    PartUpdated = 'part:updated'
 }
