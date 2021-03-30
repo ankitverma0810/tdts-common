@@ -20,14 +20,20 @@ export class EmailService {
 		});
 	}
 
-	sendEmail = async (from: string, to: string, subject: string, html: '') => {
-		let info = await this.transporter.sendMail({
+	sendEmail = (from: string, to: string, subject: string, html: '') => {
+		const mailOptions = {
 			from,
 			to,
 			subject,
 			html
-		});
+		};
 
-		console.log("Message sent: %s", info.messageId);
+		this.transporter.sendMail(mailOptions, (error, info) => {
+			if (error) {
+				console.log(error);
+			} else {
+				console.log('Email sent: ' + info.response);
+			}
+		});
 	}
 }
