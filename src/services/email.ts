@@ -20,7 +20,7 @@ export class EmailService {
 		});
 	}
 
-	sendEmail = (from: string, to: string, subject: string, html: '') => {
+	sendEmail = (from: string, to: string, subject: string, html: string) => {
 		const mailOptions = {
 			from,
 			to,
