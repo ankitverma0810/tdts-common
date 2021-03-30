@@ -26,3 +26,4 @@ export * from './events/user-updated-event';
 export * from './events/note-created-event';
 export * from './events/part-created-event';
 export * from './events/part-updated-event';
+export * from './services/email';
