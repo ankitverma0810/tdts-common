@@ -1,4 +1,7 @@
 import nodemailer, { Transporter } from 'nodemailer';
+import * as handlebars from 'handlebars';
+import * as fs from 'fs';
+import * as path from 'path';
 
 export class EmailService {
 	transporter: Transporter;
@@ -20,13 +23,22 @@ export class EmailService {
 		});
 	}
 
-	sendEmail = (options: { from: string, to: string, subject: string, html: string }, callback?: Function) => {
+	sendEmail = (options: { from: string, to: string, subject: string, url: string, data: Object }, callback?: Function) => {
+		const filePath = path.join(__dirname, options.url);
+		console.log('filePath', filePath);
+		
+		const source = fs.readFileSync(filePath, 'utf-8').toString();
+		const template = handlebars.compile(source);
+		const replacements = options.data;
+		const htmlToSend = template(replacements);
+
+		console.log('htmlToSend', htmlToSend);
 
 		const mailOptions = {
 			from: options.from,
 			to: options.to,
 			subject: options.subject,
-			html: options.html
+			html: htmlToSend
 		};
 
 		this.transporter.sendMail(mailOptions, (error, info) => {
