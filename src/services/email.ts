@@ -1,7 +1,6 @@
 import nodemailer, { Transporter } from 'nodemailer';
 import * as handlebars from 'handlebars';
 import * as fs from 'fs';
-import * as path from 'path';
 
 export class EmailService {
 	transporter: Transporter;
@@ -23,11 +22,10 @@ export class EmailService {
 		});
 	}
 
-	sendEmail = (options: { from: string, to: string, subject: string, url: string, data: Object }, callback?: Function) => {
-		const filePath = path.join(__dirname, options.url);
-		console.log('filePath', filePath);
+	sendEmail = (options: { from: string, to: string, subject: string, filePath: string, data: Object }, callback?: Function) => {
+		console.log('filePath', options.filePath);
 		
-		const source = fs.readFileSync(filePath, 'utf-8').toString();
+		const source = fs.readFileSync(options.filePath, 'utf-8').toString();
 		const template = handlebars.compile(source);
 		const replacements = options.data;
 		const htmlToSend = template(replacements);
