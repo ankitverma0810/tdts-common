@@ -20,12 +20,13 @@ export class EmailService {
 		});
 	}
 
-	sendEmail = (from: string, to: string, subject: string, html: string) => {
+	sendEmail = (options: { from: string, to: string, subject: string, html: string }, callback?: Function) => {
+
 		const mailOptions = {
-			from,
-			to,
-			subject,
-			html
+			from: options.from,
+			to: options.to,
+			subject: options.subject,
+			html: options.html
 		};
 
 		this.transporter.sendMail(mailOptions, (error, info) => {
@@ -33,6 +34,9 @@ export class EmailService {
 				console.log(error);
 			} else {
 				console.log('Email sent: ' + info.response);
+				if (callback) {
+					callback();
+				}
 			}
 		});
 	}
