@@ -45,7 +45,7 @@ export class EmailService {
 			} else {
 				console.log('Email sent: ' + info.response);
 				if (callback) {
-					callback();
+					callback(mailOptions);
 				}
 			}
 		});
