@@ -1,4 +1,6 @@
 import { Subjects } from './subjects';
+import { UserStatus } from './types/user-status';
+import { UserNotificationStatus } from './types/user-notification-status';
 
 // This would be the information that will be passed to the NATS server
 export interface UserCreatedEvent {
@@ -8,8 +10,8 @@ export interface UserCreatedEvent {
 		firstName: string;
 		lastName: string;
 		email: string;
-		status: string;
-		notificationStatus: string;
+		status: UserStatus;
+		notificationStatus: UserNotificationStatus;
 		version: number;
 	}
 }
