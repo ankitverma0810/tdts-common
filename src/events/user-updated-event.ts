@@ -8,6 +8,8 @@ export interface UserUpdatedEvent {
 		firstName: string;
 		lastName: string;
 		email: string;
+		status: string;
+		notificationStatus: string;
 		version: number;
 	}
 }
