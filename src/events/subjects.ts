@@ -5,5 +5,6 @@ export enum Subjects {
     UserUpdated = 'user:updated',
     NoteCreated = 'note:created',
     PartCreated = 'part:created',
-    PartUpdated = 'part:updated'
+    PartUpdated = 'part:updated',
+    TicketNotificationSent = 'ticket:notification:sent'
 }
