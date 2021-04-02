@@ -10,6 +10,7 @@ export interface TicketCreatedEvent {
 		issueType: IssueType;
 		responsibleSupplier: string;
 		status: TicketStatus;
+		modifiedBy: string;
 		version: number;
 	}
 }
