@@ -26,5 +26,5 @@ export * from './events/user-updated-event';
 export * from './events/note-created-event';
 export * from './events/part-created-event';
 export * from './events/part-updated-event';
-export * from './events/ticket-notification-sent-event';
+export * from './events/ticket-notification-event';
 export * from './services/email';
