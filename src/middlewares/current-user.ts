@@ -1,12 +1,15 @@
 import { Request, Response, NextFunction } from 'express';
 import jwt from 'jsonwebtoken';
 
+import { UserStatus } from '../events/types/user-status';
+
 interface UserPayload {
 	id: string;
 	firstName: string;
 	LastName: string;
 	email: string;
 	role: string;
+	status: UserStatus
 }
 
 declare global {
