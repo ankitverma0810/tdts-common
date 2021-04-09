@@ -1,6 +1,6 @@
-import nodemailer, { Transporter } from 'nodemailer';
-import * as handlebars from 'handlebars';
-import * as fs from 'fs';
+import nodemailer, { Transporter } from "nodemailer";
+import * as handlebars from "handlebars";
+import * as fs from "fs";
 
 export class EmailService {
 	transporter: Transporter;
@@ -18,36 +18,44 @@ export class EmailService {
 			auth: {
 				user: username,
 				pass: password,
-			}
+			},
 		});
 	}
 
-	sendEmail = (options: { from: string, to: string, subject: string, filePath: string, data: Object }, callback?: Function) => {
-		console.log('filePath', options.filePath);
-		
-		const source = fs.readFileSync(options.filePath, 'utf-8').toString();
+	sendEmail = async (
+		options: {
+			from: string;
+			to: string;
+			subject: string;
+			filePath: string;
+			data: Object;
+		},
+		callback?: Function
+	) => {
+		console.log("filePath", options.filePath);
+
+		const source = fs.readFileSync(options.filePath, "utf-8").toString();
 		const template = handlebars.compile(source);
 		const replacements = options.data;
 		const htmlToSend = template(replacements);
 
-		console.log('htmlToSend', htmlToSend);
+		console.log("htmlToSend", htmlToSend);
 
 		const mailOptions = {
 			from: options.from,
 			to: options.to,
 			subject: options.subject,
-			html: htmlToSend
+			html: htmlToSend,
 		};
 
-		this.transporter.sendMail(mailOptions, (error, info) => {
-			if (error) {
-				console.log(error);
-			} else {
-				console.log('Email sent: ' + info.response);
-				if (callback) {
-					callback(mailOptions);
-				}
+		try {
+			const info = await this.transporter.sendMail(mailOptions);
+			console.log("Email sent: ", info.messageId);
+			if (callback) {
+				callback(mailOptions);
 			}
-		});
-	}
+		} catch (err) {
+			console.log(err);
+		}
+	};
 }
